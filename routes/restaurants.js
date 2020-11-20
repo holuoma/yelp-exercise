@@ -1,9 +1,23 @@
 var express = require('express');
-var router = express.Router();
+var restaurant = express.Router();
+const client = require('../client');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+restaurant.get('/', (req, res, next)  => {
+  console.log('hello world!')
+     
+  // client
+  //     .query("SELECT * FROM restaurant")
+        
+  //     .then((data)=>res.send('alejandra'))
+  //     .catch((err) => console.log(err));
 });
 
-module.exports = router;
+// restaurant.get('/:id', (req, res, next) => {
+//     client 
+//         .query("")
+//         .then((data) => res.json(data.rows))
+//         .catch((err) => console.log(err))
+// })
+
+module.exports = restaurant;
