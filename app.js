@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 
 // var indexRouter = require('./routes/index');
-var restaurantsRouter = require('./routes/restaurants');
+var restaurantRouter = require('./routes/restaurants');
 
 
 

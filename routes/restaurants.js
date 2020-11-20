@@ -1,23 +1,24 @@
 var express = require('express');
-var restaurant = express.Router();
+var restaurantRouter = express.Router();
 const client = require('../client');
 
 /* GET users listing. */
-restaurant.get('/', (req, res, next)  => {
-  console.log('hello world!')
-     
-  // client
-  //     .query("SELECT * FROM restaurant")
-        
-  //     .then((data)=>res.send('alejandra'))
-  //     .catch((err) => console.log(err));
+restaurantRouter.get('/', (req, res, next)  => {  
+  client
+      .query("SELECT * FROM restaurants")
+      .then((data)=>res.send(data.rows))
+      .catch((err) => console.log(err));
 });
 
-// restaurant.get('/:id', (req, res, next) => {
-//     client 
-//         .query("")
-//         .then((data) => res.json(data.rows))
-//         .catch((err) => console.log(err))
-// })
+restaurantRouter.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+    client 
+        .query("SELECT * FROM restaurants WHERE id=$1", [id])
+        .then((data) => res.json(data.rows))
+        .catch((err) => console.log(err))
+})
 
-module.exports = restaurant;
+
+
+
+module.exports = restaurantRouter;
