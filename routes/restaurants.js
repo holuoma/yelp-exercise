@@ -18,6 +18,20 @@ restaurantRouter.get('/:id', (req, res, next) => {
         .catch((err) => console.log(err))
 })
 
+restaurantRouter.post('/', (req, res, next) => {
+   const { name, picture, tags, city } = req.body;
+   console.log(name)
+   const text = "INSERT INTO restaurants(name, picture, tags, city) VALUES ($1, $2, $3, $4) RETURNING *";
+   const values = [
+     name, 
+     picture,
+     tags,
+     city
+   ];
+   client.query(text, values)
+  .then((data) => res.json(data.rows))
+  .catch((err) => console.log(err));
+})
 
 
 
